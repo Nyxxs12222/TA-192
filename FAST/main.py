@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from typing import Optional
 
 app = FastAPI(
@@ -8,7 +8,7 @@ app = FastAPI(
 )
 
 usuarios = [
-    {"id": 1, "nombre": "Daniel", "edad": 20},
+    {"id": 1, "nombre": "Uriel", "edad": 20},
     {"id": 2, "nombre": "Isay", "edad": 37},
     {"id": 3, "nombre": "Evelyn", "edad": 20},
     {"id": 4, "nombre": "Ana", "edad": 15}
@@ -19,6 +19,32 @@ usuarios = [
 def home():
     return {'hello': 'world FastAPI'}
 
+#Endpoint CONSULTA TODOS
+@app.get('/todosUsuarios', tags=['Operaciones CRUD'])
+def leerUsuarios():
+    return {"Los usuarios registrados son ": usuarios}
+
+#Endpoint Agregar Nuevos 
+@app.post('/usuario/', tags=['Operaciones CRUD'])
+def agregarUsuario(usuario:dict):
+    for usr in usuarios: 
+        if usr["id"] == usuario.get("id"):
+            raise HTTPException(status_code = 400, detail="El id ya existe")
+
+    usuarios.append(usuario)
+    return usuario
+
+# Endpoint Actualizar 
+@app.put('/usuario/{id}', tags=['Operaciones CRUD'])
+def actualizarUsuario(id: int, usuarioAct: dict):
+    for index, usr in enumerate(usuarios):
+        if usr["id"] == id:
+            usuarios[index].update(usuarioAct)
+            return {usuarios[index]}
+    
+    raise HTTPException(status_code=404, detail="Usuario no encontrado")
+
+""" 
 # Endpoint promedio
 @app.get('/promedio', tags=['Promedios'])
 def promedio():
@@ -62,4 +88,4 @@ async def consulta_usuarios(
     if resultados:
         return {"usuarios_encontrados": resultados}
     else:
-        return {"mensaje": "No se encontraron usuarios que coincidan con los parámetros proporcionados."}
+        return {"mensaje": "No se encontraron usuarios que coincidan con los parámetros proporcionados."} """
