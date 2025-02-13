@@ -39,8 +39,18 @@ def agregarUsuario(usuario:dict):
 def actualizarUsuario(id: int, usuarioAct: dict):
     for index, usr in enumerate(usuarios):
         if usr["id"] == id:
-            usuarios[index].update(usuarioAct)
-            return {usuarios[index]}
+            usuarios[index].update(usuarioAct) 
+            return {"mensaje": "Usuario actualizado correctamente", "usuario": usuarios[index]}
+    
+    raise HTTPException(status_code=404, detail="Usuario no encontrado")
+
+# Endpoint Eliminar 
+@app.delete('/usuario/{id}', tags=['Operaciones CRUD'])
+def eliminarUsuario(id: int):
+    for index, usr in enumerate(usuarios):
+        if usr["id"] == id:
+            usuarios.pop(index)
+            return {"Usuario Eliminado"}
     
     raise HTTPException(status_code=404, detail="Usuario no encontrado")
 
