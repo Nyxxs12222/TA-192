@@ -36,3 +36,12 @@ def editarTarea(id: int, TaskUpd: Tarea):
             return {"mensaje": "Se actualizó la tarea correctamente", "tarea": tareas[index]}
     
     raise HTTPException(status_code=404, detail="No se encontró ninguna tarea")
+
+@app.delete('/tareas/{id}', tags=['Opciones Tareas'])
+def eliminarTarea(id: int):
+    for index, t in enumerate(tareas):
+        if t.id == id:
+            tareas.pop(index)
+            return {"mensaje": "Tarea Eliminada"}
+    
+    raise HTTPException(status_code=404, detail="No se encontró ninguna tarea")
