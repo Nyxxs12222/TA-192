@@ -27,3 +27,12 @@ def crearTarea(tarea: Tarea):
             raise HTTPException(status_code=400, detail="Este id ya existe")
     tareas.append(tarea)
     return tarea
+
+@app.put('/tareas/{id}', tags=['Opciones Tareas'])
+def editarTarea(id: int, TaskUpd: Tarea):
+    for index, t in enumerate(tareas):
+        if t.id == id:
+            tareas[index] = TaskUpd
+            return {"mensaje": "Se actualizó la tarea correctamente", "tarea": tareas[index]}
+    
+    raise HTTPException(status_code=404, detail="No se encontró ninguna tarea")
