@@ -5,6 +5,7 @@ from typing import List
 app = FastAPI(
     title='Administrador de Tareas',
     description='Hecho por Roberto Martinez',
+    version='1.1.1'
 )
 
 class Tarea(BaseModel):
