@@ -1,6 +1,8 @@
 from fastapi import FastAPI, HTTPException
-from typing import List
-from models import Usuario
+from fastapi.responses import JSONResponse
+from typing import Optional, List
+from modelspydantic import Usuario, modeloAuth
+from genToken import createToken
 
 app = FastAPI(
     title='Mi primera API 192',
@@ -16,10 +18,20 @@ lista_usuarios = [
     {"id": 4, "nombre": "felix", "edad": 23, "correo": "example4@example.com"}
 ]
 
-# Endpoint de inicio
-@app.get('/', tags=['Inicio'])
-def inicio():
+# Endpoint home
+@app.get('/', tags=['Hola mundo'])
+def home():
     return {'mensaje': 'Bienvenido a FastAPI'}
+
+#Endpoint Autenticacion
+@app.post('/auth', tags=['Autentificacion'])
+def login(autorizacion:modeloAuth):
+    if autorizacion.email == 'uriel@example.com' and autorizacion.passw == '123456789':
+        token:str = createToken(autorizacion.model_dump())
+        print(token)
+        return JSONResponse(content = token)
+    else: 
+        return {"Aviso" : "Usuario sin autorizacion"}
 
 # Obtener todos los usuarios
 @app.get('/usuarios', response_model=List[Usuario], tags=['Operaciones CRUD'])
