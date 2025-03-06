@@ -1,8 +1,9 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.responses import JSONResponse
 from typing import Optional, List
 from modelspydantic import Usuario, modeloAuth
 from genToken import createToken
+from middlewares import BearerJWT
 
 app = FastAPI(
     title='Mi primera API 192',
@@ -34,7 +35,7 @@ def login(autorizacion:modeloAuth):
         return {"Aviso" : "Usuario sin autorizacion"}
 
 # Obtener todos los usuarios
-@app.get('/usuarios', response_model=List[Usuario], tags=['Operaciones CRUD'])
+@app.get('/usuarios', dependencies=[Depends(BearerJWT())], response_model=List[Usuario], tags=['Operaciones CRUD'])
 def obtener_usuarios():
     return lista_usuarios
 
