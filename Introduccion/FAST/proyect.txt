@@ -1,0 +1,202 @@
+pip install fastapi uvicorn pydantic sqlalchemy databases alembic tortoise-orm passlib pyjwt requests python-dotenv fastapi-users
+
+# Crear entorno virtual
+python -m venv env
+
+# Activar entorno en CMD
+.\env\Scripts\activate
+
+# Activar entorno en PowerShell
+.\env\Scripts\Activate.ps1
+
+# Instalar FastAPI
+pip install fastapi
+
+# Instalar Uvicorn
+pip install uvicorn
+
+# Instalar Pydantic
+pip install pydantic
+
+# Instalar SQLAlchemy
+pip install sqlalchemy
+
+# Instalar Databases (asíncrono)
+pip install databases
+
+# Instalar Alembic (migraciones)
+pip install alembic
+
+# Instalar Tortoise ORM (asíncrono)
+pip install tortoise-orm
+
+# Instalar Passlib (contraseñas seguras)
+pip install passlib
+
+# Instalar PyJWT (autenticación JWT)
+pip install pyjwt
+
+# Instalar Requests (peticiones HTTP)
+pip install requests
+
+# Instalar python-dotenv (variables de entorno)
+pip install python-dotenv
+
+# Instalar FastAPI-Users (gestión de usuarios)
+pip install fastapi-users
+
+# Guardar dependencias en requirements.txt
+pip freeze > requirements.txt
+
+# Instalar dependencias desde requirements.txt
+pip install -r requirements.txt
+
+# Ejecutar FastAPI con Uvicorn
+uvicorn main:app --reload
+
+(Valida correo electrónico) correo
+^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
+
+(Valida URL) url
+^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$
+
+(Valida dirección IPv4) ipv4
+^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$
+
+(Valida dirección IPv6) ipv6
+^([0-9a-fA-F]{1,4}:){7}([0-9a-fA-F]{1,4})$
+
+(Valida número de teléfono internacional) telefono
+^\+?[1-9]\d{1,14}$
+
+(Valida fecha YYYY-MM-DD) fecha
+^\d{4}-\d{2}-\d{2}$
+
+(Valida hora HH:MM) hora
+^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$
+
+(Valida contraseña (mínimo 8 caracteres, al menos una letra y un número)) contrasena
+^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
+
+(Valida código postal (5 dígitos)) codigo_postal
+^\d{5}$
+
+(Valida cadena alfanumérica) alfanumerico
+^[a-zA-Z0-9]+$
+
+(Valida nombre (solo letras y espacios)) nombre
+^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$
+
+(Valida fecha y hora YYYY-MM-DD HH:MM:SS) fecha_hora
+^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+
+(Valida cadena con solo letras y un número) letras_numero
+^[A-Za-z]+\d+$
+
+(Valida nombre de usuario (solo letras, números y guiones bajos)) usuario
+^[a-zA-Z0-9_]+$
+
+(Valida número entero positivo) entero_positivo
+^[1-9]\d*$
+
+(Valida número decimal) decimal
+^\d+(\.\d+)?$
+
+(Valida cadena no vacía) cadena_no_vacia
+^(?!\s*$).+$
+
+(Valida solo letras mayúsculas) mayusculas
+^[A-Z]+$
+
+(Valida solo letras minúsculas) minusculas
+^[a-z]+$
+
+(Valida letras y espacios) letras_espacios
+^[A-Za-z\s]+$
+
+(Valida caracteres especiales) caracteres_especiales
+^[!@#$%^&*(),.?":{}|<>]+$
+
+(Valida solo números) solo_numeros
+^\d+$
+
+(Valida dirección de correo sin dominio de segundo nivel) correo_sin_dominio
+^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+$
+
+(Valida una cadena con 6 a 8 dígitos) cadena_6_8_digitos
+^\d{6,8}$
+
+(Valida una tarjeta de crédito (Visa, MasterCard, etc.)) tarjeta_credito
+^(4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|3[47][0-9]{13}|6(?:011|5[0-9]{2})[0-9]{12}|(2131|1800|35\d{3})\d{11})$
+
+(Valida un número entre 0 y 100) numero_0_100
+^(100|[1-9]?\d)$
+
+(Valida un número flotante positivo) flotante_positivo
+^\d+\.\d+$
+
+(Valida una cadena con solo números y guiones) numeros_guiones
+^\d+(-\d+)*$
+
+(Valida un texto que contiene al menos una letra y un número) letra_numero
+^(?=.*[a-zA-Z])(?=.*\d).+$
+
+(Valida fecha en formato DD/MM/YYYY) fecha_dd_mm_yyyy
+^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$
+
+(Valida texto con máximo 50 caracteres) max_50_caracteres
+^.{1,50}$
+
+(Valida dirección de correo electrónico con dominio .edu) correo_edu
+^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.edu$
+
+(Valida si un texto es una expresión matemática simple) expresion_matematica
+^([0-9]+[-+*/^][0-9]+)+$
+
+(Valida una secuencia de caracteres hexadecimales) hexadecimal
+^[A-Fa-f0-9]+$
+
+(Valida una fecha de nacimiento en formato DD/MM/YYYY) fecha_nacimiento
+^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$
+
+(Valida una dirección de correo para Gmail) correo_gmail
+^[a-zA-Z0-9._%+-]+@gmail\.com$
+
+(Valida un código de barras de 13 dígitos) codigo_barras
+^\d{13}$
+
+(Valida una dirección de página web segura (https)) url_https
+^https:\/\/[^\s/$.?#].[^\s]*$
+
+(Valida una hora en formato de 24 horas HH:MM:SS) hora_24
+^([01]?[0-9]|2[0-3]):([0-5]?[0-9]):([0-5]?[0-9])$
+
+(Valida una fecha en formato MM/DD/YYYY) fecha_mm_dd_yyyy
+^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$
+
+(Valida número de versión en formato X.X.X) version
+^\d+\.\d+\.\d+$
+
+(Valida solo caracteres alfanuméricos, sin espacios) alfanumerico_sin_espacios
+^[a-zA-Z0-9]+$
+
+(Valida texto con una longitud entre 8 y 20 caracteres) longitud_8_20
+^.{8,20}$
+
+(Valida una cadena con al menos un carácter especial y al menos una letra) especial_letra
+^(?=.*[A-Za-z])(?=.*[!@#$%^&*(),.?":{}|<>]).+$
+
+(Valida un número de identificación personal (NIP) de 4 dígitos) nip
+^\d{4}$
+
+(Valida una cadena de texto que comienza con una letra y tiene 5 a 10 caracteres) comienza_letra
+^[A-Za-z][A-Za-z0-9]{4,9}$
+
+(Valida un nombre completo (primer nombre y apellido) en formato solo letras y un espacio entre ellos) nombre_completo
+^[A-Za-z]+ [A-Za-z]+$
+
+(Valida un número binario) binario
+^[01]+$
+
+(Valida una dirección MAC) direccion_mac
+^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$
